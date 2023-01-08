@@ -1,10 +1,20 @@
 'use client';
 
-import { CacheProvider } from '@emotion/react';
-import { useEmotionCache, MantineProvider } from '@mantine/core';
+import { useEmotionCache, ColorScheme } from '@mantine/core';
 import { useServerInsertedHTML } from 'next/navigation';
+import { useState } from 'react';
+import { createClient, Provider } from 'urql';
+import { ThemeProvider } from '@/desing-system/ThemeProvider';
 
-export default function RootStyleRegistry({ children }: { children: React.ReactNode }) {
+const client = createClient({
+  url: 'http://localhost:8080/graphql',
+});
+
+export default function RootStyleRegistry({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const cache = useEmotionCache();
   cache.compat = true;
 
@@ -17,11 +27,17 @@ export default function RootStyleRegistry({ children }: { children: React.ReactN
     />
   ));
 
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  /*
+
+ */
   return (
-    <CacheProvider value={cache}>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-        {children}
-      </MantineProvider>
-    </CacheProvider>
+    <Provider value={client}>
+      <ThemeProvider>
+        <>{children}</>
+      </ThemeProvider>
+    </Provider>
   );
 }

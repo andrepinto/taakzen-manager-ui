@@ -1,0 +1,26 @@
+query CollectionById($collectionId: String) {
+    collection(id: $collectionId) {
+        createdBy
+        id
+        name
+        schema {
+            fields {
+                id
+                Options {
+                    OptionsText {
+                        max {
+                            value
+                        }
+                        min {
+                            value
+                        }
+                    }
+                }
+                required
+                name
+                type
+                unique
+            }
+        }
+    }
+}

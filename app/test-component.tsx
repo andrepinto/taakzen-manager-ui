@@ -4,17 +4,17 @@ import { createStyles, Select, TextInput } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   root: {
-    position: 'relative',
+    position: `relative`,
   },
 
   input: {
-    height: 'auto',
+    height: `auto`,
     paddingTop: 18,
   },
 
   label: {
-    position: 'absolute',
-    pointerEvents: 'none',
+    position: `absolute`,
+    pointerEvents: `none`,
     fontSize: theme.fontSizes.xs,
     paddingLeft: theme.spacing.sm,
     paddingTop: theme.spacing.sm / 2,
@@ -28,11 +28,15 @@ export function Test() {
 
   return (
     <div>
-      <TextInput label="Shipping address" placeholder="15329 Huston 21st" classNames={classes} />
+      <TextInput
+        label="Shipping address 2"
+        placeholder="15329 Huston 21st"
+        classNames={classes}
+      />
 
       <Select
         style={{ marginTop: 20, zIndex: 2 }}
-        data={['React', 'Angular', 'Svelte', 'Vue']}
+        data={[`React`, `Angular`, `Svelte`, `Vue`]}
         placeholder="Pick one"
         label="Your favorite library/framework"
         classNames={classes}

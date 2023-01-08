@@ -1,0 +1,11 @@
+query Components {
+    components {
+        createdBy
+        id
+        name
+        system
+        type
+        updatedBy
+
+    }
+}

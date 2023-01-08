@@ -1,0 +1,10 @@
+query Collections {
+    collections {
+        createdBy
+        id
+        name
+        system
+        type
+        updatedBy
+    }
+}
